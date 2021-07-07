@@ -1,0 +1,65 @@
+<style>
+	.amp-system-navbar-positioner {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.amp-system-navbar {
+		width: max-content;
+		position: absolute;
+		bottom: 1vh;
+		border-radius: 1em;
+		background-color: var(--navbar-color);
+		height: 10vh;
+		overflow: hidden;
+		display: flex;
+		transition: 500ms ease-in-out;
+	}
+
+	.amp-system-appmenu {
+		background-color: #00000055;
+		height: 10vh;
+	}
+
+	.amp-system-appmenu>img {
+		height: 8vh;
+		padding: 1vh;
+		border-radius: 1.5em;
+	}
+
+	#amp-system-navbarapps>img {
+		height: 8vh;
+		padding: 1vh;
+		border-radius: 1.5em;
+	}
+
+	#amp-system-navbarapps {
+		display: flex;
+		justify-content: center;
+		align-self: center;
+		max-width: 90vw;
+		overflow-x: hidden;
+	}
+
+	#amp-system-navbarapps>img {
+		display: flex;
+		justify-content: center;
+		align-self: center;
+	}
+</style>
+
+<div class="amp-system-navbar-positioner draggable">
+	<div class="amp-system-navbar">
+		<div class="amp-system-appmenu">
+			<img src="./../icons/appicon.png" alt="appmenu" onclick="amp_system_open_app()">
+		</div>
+		<div id="amp-system-navbarapps">
+			<img src="./../icons/appicon.png" alt="appmenu">
+			<img src="./../icons/appicon.png" alt="appmenu">
+			<img src="./../icons/appicon.png" alt="appmenu">
+			<img src="./../icons/appicon.png" alt="appmenu">
+		</div>
+	</div>
+</div>
