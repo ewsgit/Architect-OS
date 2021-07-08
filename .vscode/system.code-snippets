@@ -19,7 +19,7 @@
 		"scope": "html",
 		"prefix": "amp-cross-link",
 		"body": [
-			"<div amp-include-html='$0'></div>"
+			"<div arc-include-html='$0'></div>"
 		],
 		"description": "Architect Html Cross-File-Link"
 	}

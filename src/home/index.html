@@ -10,19 +10,20 @@
 		body {
 			padding: 0;
 			margin: 0;
+			overflow: hidden;
 		}
 	</style>
 	<script defer src="./../system/framework.js"></script>
 	<link rel="shortcut icon" href="./../icons/appicon.png" type="image/x-icon">
-	<script defer src="./../system/openapp.js"></script>
 	<script defer src="./../system/sysapi.js"></script>
 	<link rel="shortcut icon" href="./../icons/Architect OS_alpha_large.png" type="image/x-icon">
 </head>
 
 <body>
-	<div amp-include-html='./../settings/themes/system-color-theme.html'></div>
+	<div arc-include-html='./../settings/themes/system-color-theme.html'></div>
 	<div id="windowscontainer"></div>
-	<div amp-include-html='./../components/navbar.html'></div>
+	<div arc-include-html='./../components/navbar.html'></div>
+	<div arc-include-html='./../components/notification.html'></div>
 </body>
 
 </html>

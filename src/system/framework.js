@@ -1,5 +1,5 @@
 /**
- *  <div amp-include-html="[path to html file]"></div>
+ *  <div arc-include-html="[path to html file]"></div>
  */
 
 // HTML CROSS LINK
@@ -10,7 +10,7 @@ function includeHTML() {
 	for (i = 0; i < z.length; i++) {
 		elmnt = z[i];
 		/*search for elements with a certain atrribute:*/
-		file = elmnt.getAttribute("amp-include-html");
+		file = elmnt.getAttribute("arc-include-html");
 		if (file) {
 			/* Make an HTTP request using the attribute value as the file name: */
 			xhttp = new XMLHttpRequest();
@@ -22,7 +22,7 @@ function includeHTML() {
 						console.error('404 - Minetools Framework Error ( HTML CROSS LINK )')
 					}
 					/* Remove the attribute, and call this function once more: */
-					elmnt.removeAttribute("amp-include-html");
+					elmnt.removeAttribute("arc-include-html");
 					includeHTML();
 				}
 			}
