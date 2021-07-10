@@ -1,10 +1,13 @@
+
+
 var arcapi = {
-	createwindow(appdata) {
+	createwindow(appdata, src_type) {
 		if (!appdata) return this.error('window failed to create (No Appdata Was Passed Into The Window Create Function)');
 		var appdata = JSON.parse(appdata)
 		document.getElementById(`windowscontainer`).innerHTML += `
 		<div class="window" id="window_${appdata.appid}">
 		<div class="windowheader" id="window_${appdata.appid}_header"></div>
+		<div class="windowcontent" id="window_${appdata.appid}_content"></div>
 		<script defer id="window_${appdata.appid}_javascript"></script>
 		</div>
 		`
@@ -73,23 +76,33 @@ function ampsys_closewindow_${appdata.appid}() {
 		if (appdata.headerscale) {
 			document.getElementById(`window_${appdata.appid}_header`).style.height = appdata.headerscale
 
-			document.getElementById(`window_${appdata.appid}_header`).children[1].style.height = appdata.headerscale
-			document.getElementById(`window_${appdata.appid}_header`).children[2].style.height = appdata.headerscale
-			document.getElementById(`window_${appdata.appid}_header`).children[3].style.height = appdata.headerscale
+			document.getElementById(`window_${appdata.appid}_header`).children[1].style.height = `calc(${appdata.headerscale} - 4px)`
+			document.getElementById(`window_${appdata.appid}_header`).children[2].style.height = `calc(${appdata.headerscale} - 4px)`
+			document.getElementById(`window_${appdata.appid}_header`).children[3].style.height = `calc(${appdata.headerscale} - 4px)`
 
 			document.getElementById(`window_${appdata.appid}_header`).children[1].style.right = `0`
-			document.getElementById(`window_${appdata.appid}_header`).children[2].style.right = `calc(${appdata.headerscale} + 2px)`
-			document.getElementById(`window_${appdata.appid}_header`).children[3].style.right = `calc(${appdata.headerscale} + 4px + ${appdata.headerscale})`
+			document.getElementById(`window_${appdata.appid}_header`).children[2].style.right = `calc(${appdata.headerscale})`
+			document.getElementById(`window_${appdata.appid}_header`).children[3].style.right = `calc(${appdata.headerscale} + ${appdata.headerscale})`
 		}
+		if (appdata.externalappsrc) document.getElementById(`window_${appdata.appid}_content`).innerHTML = `<div arc-include-html='${appdata.appsrc}'></div>`
+		if (appdata.overflowtype) document.getElementById(`window_${appdata.appid}_content`).style.overflow = appdata.overflowtype
+		if (appdata.externalappsrc) document.getElementById(`window_${appdata.appid}_content`).style.height = `calc(100% - ${appdata.headerscale})`
+		if (src_type == 'internal') document.getElementById(`window_${appdata.appid}_content`).innerHTML = `<div arc-include-html='./../apps/${appdata.appid}/index.html'></div>`
 	},
 	error(reason) {
 		console.error(reason)
+	},
+	genappid() {
+		return Math.floor * 1000000000000000
+	},
+	gen_rand_hex(size) {
+		return [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 	}
 }
 
 var appdata = {
 	themecolor: 'var(--navbar-color)',
-	appid: '1238',
+	appid: '4d213d8031f43d4da56dacbb1f74e77a',
 	scalex: '400px',
 	scaley: '500px',
 	nobg: false,
@@ -98,9 +111,11 @@ var appdata = {
 	headerscale: '60px',
 	displayname: 'Lorem ipsum dolor sit amet.',
 	windowmoveable: true,
+	externalappsrc: './../apps/settings.html',
+	overflowtype: 'auto',
 }
 
-arcapi.createwindow(JSON.stringify(appdata))
+arcapi.createwindow(JSON.stringify(appdata), 'internal')
 
 //#region Allow Api Code To Run
 function nodeScriptReplace(node) {
